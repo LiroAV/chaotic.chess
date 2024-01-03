@@ -192,7 +192,7 @@ def undo_coloring():
 	if is_last_move_valid:
 		bomb.setBombIfPlayerSteppedOnBombField(button_list, endbutton)			
 	
-  # explode bomb for white piece if needed
+# explode bomb for white piece if needed
 # 	if bomb.isBomb1GoingOff():
 # 		bomb.explodeBomb1(button_list, black_players, white_players)
 # 		get_positions()	
