@@ -141,9 +141,9 @@ def resetBombCellColors(button_list, row, col):
 		for c in range(max(0, col-1), min(8, col+2)):
 			explodePositions.append((r,c))
 			if (r + c) % 2 == 1:
-				button_list[r][c].config(bg = "white")  
+				button_list[r][c].config(bg = "gray")  
 			else:	
-				button_list[r][c].config(bg = "gray")
+				button_list[r][c].config(bg = "white")
 	return explodePositions
 
 
