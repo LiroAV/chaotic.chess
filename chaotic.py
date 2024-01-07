@@ -1,4 +1,5 @@
 TK_SILENCE_DEPRECATION=1
+
 from tkinter import *
 import tkinter.messagebox
 import bomb
@@ -85,8 +86,6 @@ def btnClick(buttons):
 		startbutton_text = buttons['text']
 		print("Set startbutton_text to: " + startbutton_text)
 
-def chaotic_step_1st_click_handler():
-	return
 
 def findFigure(chess_position, turn):
 
@@ -192,23 +191,6 @@ def undo_coloring():
 	if is_last_move_valid:
 		bomb.setBombIfPlayerSteppedOnBombField(button_list, endbutton)			
 	
-# explode bomb for white piece if needed
-# 	if bomb.isBomb1GoingOff():
-# 		bomb.explodeBomb1(button_list, black_players, white_players)
-# 		get_positions()	
-# 		for i in black_players: #Update all possible moves of the enemy team
-# 			i.update_possible_moves(position_white_players, position_black_players, possible_moves_white, turn)
-# 		for i in white_players: #Update all possible moves of the own team
-# 			i.update_possible_moves(position_black_players, position_white_players, possible_moves_black, turn)		
-
-#   # explode bomb for black piece if needed
-# 	if bomb.isBomb2GoingOff():
-# 		bomb.explodeBomb2(button_list, black_players, white_players)		
-# 		get_positions()	
-# 		for i in black_players: #Update all possible moves of the enemy team
-# 			i.update_possible_moves(position_white_players, position_black_players, possible_moves_white, turn)
-# 		for i in white_players: #Update all possible moves of the own team
-# 			i.update_possible_moves(position_black_players, position_white_players, possible_moves_black, turn)		
 
 def btnID(id):
 	global tkstart, tkend, startbutton, endbutton, error, white_players, black_players, fields_dic, turn, error
@@ -232,7 +214,6 @@ def btnID(id):
 				startbutton['bg'] = 'lightgreen'	
 
 		if tkstart != '' and tkend == '': 
-			chaotic_step_1st_click_handler()
 
 			get_positions()
 			translate_a = {'a' : 0, 'b' : 1, 'c' : 2, 'd' : 3, 'e' : 4, 'f' : 5, 'g' : 6, 'h' : 7}
@@ -270,7 +251,7 @@ def btnID(id):
 											fields_dic[item]['text'] = '\u0E4F'
 						
 		if tkstart != '' and tkend != '':
-			#chaotic_step_2nd_click_handler()
+
 
 			main()
 			if error == '':
@@ -1055,8 +1036,6 @@ def checkinput():
 
 	if check_chosen_move(start_position, end_position):
 		if turn == 'W': #whites turn
-			#print('All possible Moves of White before: ' + str(possible_moves_white))
-			#print('All possible Moves of Black before: ' + str(possible_moves_black))
 			chaoticBeforeMoveEventHandler()
 			destroyed_unit = move_white_figure(start_position, end_position)
 			get_positions()	
@@ -1068,8 +1047,6 @@ def checkinput():
 				print('Not allowed to bring own King into chess position')
 				return(0,0)
 			chaoticAfterMoveEventHandler(end_position)
-			#print('All possible Moves of White after: ' + str(possible_moves_white))
-			#print('All possible Moves of Black after: ' + str(possible_moves_black))
 			for i in possible_moves_white:
 				if position_king_black in i: # is the black king in check?
 					if canFigureMove(K2): # can it move?
@@ -1083,8 +1060,6 @@ def checkinput():
 							return(-2,-2)
 			turn = 'B'
 		else: #blacks turn
-			#print('All possible Moves of White before: ' + str(possible_moves_white))
-			#print('All possible Moves of Black before: ' + str(possible_moves_black))
 			chaoticBeforeMoveEventHandler()
 			destroyed_unit = move_black_figure(start_position, end_position)
 			get_positions()	
@@ -1096,8 +1071,6 @@ def checkinput():
 				print('Not allowed to bring own King into chess position')
 				return(0,0)
 			chaoticAfterMoveEventHandler(end_position)
-			#print('All possible Moves of White after: ' + str(possible_moves_white))
-			#print('All possible Moves of Black after: ' + str(possible_moves_black))
 			for i in possible_moves_black:
 				if position_king_white in i: # is the white king in check?
 					if canFigureMove(K1): # can it move?

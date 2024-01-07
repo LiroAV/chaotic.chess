@@ -26,7 +26,7 @@ class Bomb:
 		if self.isSet == False:
 			self.button.config(text= "") 
 			self.button_list.append(self.button)
-			
+
 
 	def set(self, rounds):
 		global tk
@@ -128,7 +128,6 @@ def obtainBombPosition(button):
 
 
 def setBombCellColors(button_list, row, col):
-	#print("setBombCellColors ", row, col)	
 	# set color of 3x3 cells around (row, col) to black
 	for r in range(max(0, row-1), min(8, row+2)):
 		for c in range(max(0, col-1), min(8, col+2)):
@@ -137,8 +136,7 @@ def setBombCellColors(button_list, row, col):
 	return
 
 
-def resetBombCellColors(button_list, row, col):
-	#print("resetBombCellColors ", row, col)	
+def resetBombCellColors(button_list, row, col):	
 	# restore color of 3x3 cells around (row, col)
 	explodePositions = []
 	for r in range(max(0, row-1), min(8, row+2)):

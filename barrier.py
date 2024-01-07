@@ -13,9 +13,6 @@ is_barrier_2_set = False
 barrier_field_button_1 = None
 barrier_field_button_2 = None
 
-#barrier_1_counter_label = None
-#barrier_2_counter_label = None
-
 tk = None
 
 def initTk(parentTk):
@@ -25,13 +22,6 @@ def decreaseRounds():
 	global barrier_1_rounds, barrier_2_rounds
 	barrier_1_rounds -=1
 	barrier_2_rounds -=1
-	# global is_barrier_1_set, is_barrier_2_set, barrier_1_rounds, barrier_2_rounds, barrier_1_counter_label, barrier_2_counter_label
-	# if is_barrier_1_set:
-	# 	barrier_1_rounds -=1
-	# 	barrier_1_counter_label.config(text = barrier_1_rounds)
-	# if is_barrier_2_set:
-	# 	barrier_2_rounds -=1
-	# 	barrier_2_counter_label.config(text = barrier_2_rounds)
 
 def setActionLabel(endbutton_text, action_label):
   if endbutton_text == BARRIER_1 or endbutton_text == BARRIER_2:

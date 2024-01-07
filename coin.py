@@ -72,14 +72,6 @@ def isCoin1Played(endbutton):
 def isCoin2Played(endbutton):
 	return endbutton == coin_field_button_2
 
-
-# Turns the piece that stepped on the coin into a new piece that is resembled on the coin
-#
-# endbutton_text: the current name of the end button
-# player_color: "B" for black, "W" fot white
-# figure:
-# returns: the new name of the end button
-#
 def setCoin(endbutton_text, player_color, figure):
 	WB = '\u2657'
 	WN = '\u2658'
