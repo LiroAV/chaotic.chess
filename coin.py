@@ -15,8 +15,9 @@ tk = None
 def initTk(parentTk):
 	tk = parentTk
 
-def removeCoinIfExist(coin_button):
+def removeCoinIfExist(coin_button, button_list):
 	if coin_button:
+		button_list.append(coin_button)
 		if coin_button["fg"] == "orange":
 			coin_button.config(text= "")
 
@@ -37,13 +38,14 @@ def getButtonPosition(button):
 	return position
 	
 def placeCoin(button_list, players_pos_list, endbutton_pos, coinText, coin_button):
-	removeCoinIfExist(coin_button)
+	removeCoinIfExist(coin_button, button_list)
 	
 	# find an empty field to place the coin		
 	while True:
 		coin_button = random.choice(button_list)
 		coin_pos = getButtonPosition(coin_button)
 		if coin_pos not in players_pos_list and coin_pos != endbutton_pos:
+			button_list.remove(coin_button)
 			coin_button.config(text=coinText, fg = "orange")
 			break
 		

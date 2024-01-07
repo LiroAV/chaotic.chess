@@ -33,8 +33,9 @@ def setActionLabel(endbutton_text, action_label):
 def appendRoundsLabel(rounds_label):
 	rounds_label["text"] += ", Shield rounds: " + str(shield_1_rounds)
 
-def removeShieldIfExist(shield_button):
+def removeShieldIfExist(shield_button, button_list):
 	if shield_button:
+		button_list.append(shield_button)
 		if shield_button["fg"] == "red":
 			clearColorOnShieldField(shield_button)
 			button_text = shield_button["text"]
@@ -60,13 +61,14 @@ def getButtonPosition(button):
 	return position
 
 def placeShield(button_list, players_pos_list, endbutton_pos, shieldText, shield_button):
-	removeShieldIfExist(shield_button)
+	removeShieldIfExist(shield_button, button_list)
 	
 	# find an empty field to place the shield		
 	while True:
 		shield_button = random.choice(button_list)
 		shield_pos = getButtonPosition(shield_button)
 		if shield_pos not in players_pos_list and shield_pos != endbutton_pos:
+			button_list.remove(shield_button)
 			shield_button.config(text=shieldText, fg = "red")
 			break
 		

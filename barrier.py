@@ -37,8 +37,9 @@ def setActionLabel(endbutton_text, action_label):
   if endbutton_text == BARRIER_1 or endbutton_text == BARRIER_2:
     action_label.config(text = "A BARRIER IS BLOCKING YOU!", fg = "purple")
 
-def removeBarrierIfExist(barrier_button):
+def removeBarrierIfExist(barrier_button, button_list):
 	if barrier_button:
+		button_list.append(barrier_button)
 		if barrier_button["fg"] == "purple":
 			barrier_button.config(text= "")
 
@@ -58,13 +59,14 @@ def getButtonPosition(button):
 	return position
 
 def placeBarrier(button_list, players_pos_list, endbutton_pos, barrierText, barrier_button):
-	removeBarrierIfExist(barrier_button)
+	removeBarrierIfExist(barrier_button, button_list)
 	
 	# find an empty field to place the barrier		
 	while True:
 		barrier_button = random.choice(button_list)
 		barrier_pos = getButtonPosition(barrier_button)
 		if barrier_pos not in players_pos_list and barrier_pos != endbutton_pos:
+			button_list.remove(barrier_button)
 			barrier_button.config(text=barrierText, fg = "purple")
 			break
 		

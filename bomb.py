@@ -10,11 +10,12 @@ BOMB_ROUNDS = 3
 
 # Represents a Bomb on the table
 class Bomb:
-	def __init__(self, button, label, isSet, rounds):
+	def __init__(self, button, label, isSet, rounds, button_list):
 		self.button = button
 		self.label = label
 		self.isSet = isSet
 		self.rounds = rounds
+		self.button_list = button_list
 
 	def decreaseRounds(self):
 		if self.isSet:
@@ -24,6 +25,8 @@ class Bomb:
 	def removeIfNotSet(self):
 		if self.isSet == False:
 			self.button.config(text= "") 
+			self.button_list.append(self.button)
+			
 
 	def set(self, rounds):
 		global tk
@@ -77,6 +80,7 @@ def removeAllBombsIfNotSet():
 	global bomb_list
 	for bomb in bomb_list:
 		bomb.removeIfNotSet()
+
 	bomb_list = list(filter(lambda b: b.isSet, bomb_list))
 
 
@@ -93,7 +97,7 @@ def placeBomb(button_list, players_pos_list, endbutton_pos):
 		bomb_button = random.choice(button_list)
 		bomb_pos = getButtonPosition(bomb_button)
 		if bomb_pos not in players_pos_list and bomb_pos != endbutton_pos:
-
+			button_list.remove(bomb_button)
 			# bomb_button is the randomly selected button, that we will place our bomb item on
 			# we visualize our bomb by editing the buttons text to the bomb symbol
 			bomb_button.config(text=BOMB_SYMBOL, fg = "green") 
@@ -107,7 +111,7 @@ def placeBomb(button_list, players_pos_list, endbutton_pos):
 def placeBomb1(button_list, players_pos_list, endbutton_pos):
 	global bomb_list
 	bomb_button = placeBomb(button_list, players_pos_list, endbutton_pos)
-	bomb = Bomb(bomb_button, None, False, BOMB_ROUNDS)
+	bomb = Bomb(bomb_button, None, False, BOMB_ROUNDS, button_list)
 	bomb_list.append(bomb)
 
 
